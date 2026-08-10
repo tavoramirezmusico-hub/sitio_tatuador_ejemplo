@@ -4,14 +4,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tinta & Sombra · Estudio de Tatuaje, Madrid</title>
+    <title>Tinta & Sombra · Estudio de Tatuaje</title>
     <meta name="description"
-        content="Tinta & Sombra — estudio de tatuaje en Madrid. Realismo, blackwork y diseño a medida por Luciano Varela.">
+        content="Tinta & Sombra — estudio de tatuaje. Fotos reales de piezas y sesiones. Reserva tu cita.">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,500;9..144,600;9..144,900&family=Cormorant+Garamond:ital,wght@0,400;1,400;1,600&family=Jost:wght@200;300;400;500;600&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&family=Permanent+Marker&display=swap"
         rel="stylesheet">
 
     <link rel="stylesheet" href="css/style.css">
@@ -19,25 +19,25 @@
 
 <body>
 
-    <!-- ===== TEXTURA DE GRANO ===== -->
-    <svg class="grain-defs" width="0" height="0">
-        <filter id="grain">
-            <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" stitchTiles="stitch"></feTurbulence>
-            <feColorMatrix type="saturate" values="0"></feColorMatrix>
-        </filter>
-    </svg>
-    <div class="grain-overlay"></div>
+    <div class="paper-grain" aria-hidden="true"></div>
 
     <!-- ===== HEADER ===== -->
     <header class="header">
-        <div class="header-container">
-            <a href="#top" class="logo">
-                <svg class="logo-mark" viewBox="0 0 60 60" fill="none">
-                    <circle cx="30" cy="30" r="27" stroke="currentColor" stroke-width="1" />
-                    <ellipse cx="30" cy="30" rx="15" ry="8" stroke="currentColor" stroke-width="1" />
-                    <circle cx="30" cy="30" r="4" fill="currentColor" />
+        <div class="header-inner">
+            <a href="#top" class="stamp-logo" aria-label="Tinta & Sombra, inicio">
+                <svg viewBox="0 0 200 200">
+                    <defs>
+                        <path id="ringHeader" d="M 100,15 A 85,85 0 1 1 99,15" fill="none" />
+                    </defs>
+                    <circle cx="100" cy="100" r="85" class="stamp-ring" />
+                    <circle cx="100" cy="100" r="62" class="stamp-ring stamp-ring-inner" />
+                    <text class="stamp-text">
+                        <textPath href="#ringHeader" startOffset="0%">TINTA &amp; SOMBRA • ESTUDIO DE TATUAJE •
+                        </textPath>
+                    </text>
+                    <path class="stamp-star"
+                        d="M100 68 L108 92 L133 92 L112 107 L120 131 L100 116 L80 131 L88 107 L67 92 L92 92 Z" />
                 </svg>
-                <span class="logo-text">Tinta<em>&</em>Sombra</span>
             </a>
             <nav class="main-nav">
                 <ul>
@@ -48,271 +48,274 @@
                 </ul>
             </nav>
             <button class="menu-toggle" aria-label="Abrir menú" aria-expanded="false">
-                <span></span><span></span>
+                <span>MENÚ</span>
             </button>
         </div>
     </header>
 
-    <!-- ===== HERO ===== -->
+    <!-- ===== HERO / CORCHO ===== -->
     <section class="hero" id="top">
-        <div class="hero-grain"></div>
-        <div class="hero-inner">
-            <div class="hero-text">
-                <p class="eyebrow">Estudio de tatuaje — Madrid, desde 2006</p>
-                <h1 class="hero-title">
-                    <span class="line">La piel</span>
-                    <span class="line accent">es el lienzo</span>
-                    <span class="line">que permanece</span>
-                </h1>
-                <p class="hero-sub">Diseño a mano, líneas propias, tinta que no se negocia. Cada pieza se piensa una
-                    sola vez, para una sola piel.</p>
-                <div class="hero-actions">
-                    <a href="#contacto" class="btn btn-primary">Reservar consulta</a>
-                    <a href="#galeria" class="btn btn-ghost">Ver trabajos <span aria-hidden="true">↓</span></a>
+        <div class="hero-board">
+
+            <div class="photo-card hero-photo-1" style="--rot:-4deg">
+                <span class="tape tape-tl"></span>
+                <span class="tape tape-br"></span>
+                <div class="photo-duotone"
+                    style="background-image:url('https://images.unsplash.com/photo-1761276297686-f507ca9fe8b6?w=800&h=1000&fit=crop&auto=format&q=80')">
                 </div>
+                <span class="photo-tag">SESIÓN EN VIVO</span>
             </div>
-            <div class="hero-emblem" aria-hidden="true">
-                <svg class="emblem-svg" viewBox="0 0 400 400" fill="none">
-                    <circle class="e-ring e-ring-1" cx="200" cy="200" r="150" />
-                    <circle class="e-ring e-ring-2" cx="200" cy="200" r="118" />
-                    <g class="e-ticks"></g>
-                    <ellipse class="e-eye" cx="200" cy="200" rx="70" ry="34" />
-                    <path class="e-lid-top" d="M130 200 Q200 150 270 200" />
-                    <path class="e-lid-bottom" d="M130 200 Q200 250 270 200" />
-                    <circle class="e-iris" cx="200" cy="200" r="19" />
-                    <circle class="e-pupil" cx="200" cy="200" r="6" />
-                    <path class="e-ray e-ray-l" d="M200 200 L138 172" />
-                    <path class="e-ray e-ray-r" d="M200 200 L262 172" />
+
+            <div class="hero-headline">
+                <p class="kicker">— ESTUDIO INDEPENDIENTE —</p>
+                <h1>
+                    <span class="h-line">TINTA QUE</span>
+                    <span class="h-line h-outline">NO SE</span>
+                    <span class="h-line">BORRA</span>
+                </h1>
+                <svg class="scribble-arrow" viewBox="0 0 220 90" aria-hidden="true">
+                    <path d="M8 12 C 70 -6, 150 70, 205 40" />
+                    <path d="M182 30 L207 41 L190 60" />
+                </svg>
+                <a href="#contacto" class="ticket-btn">
+                    <span>RESERVAR CITA</span>
+                </a>
+            </div>
+
+            <div class="stamp-badge stamp-badge-hero" style="--rot:-9deg">
+                <svg viewBox="0 0 160 160">
+                    <defs>
+                        <path id="ringHero" d="M 80,10 A 70,70 0 1 1 79,10" fill="none" />
+                    </defs>
+                    <circle cx="80" cy="80" r="70" class="stamp-ring" />
+                    <text class="stamp-text stamp-text-sm">
+                        <textPath href="#ringHero" startOffset="0%">DESDE 2006 • MADRID • </textPath>
+                    </text>
+                    <text x="80" y="90" class="stamp-center">100%<tspan x="80" dy="18">A MANO</tspan></text>
                 </svg>
             </div>
+
+            <div class="photo-card hero-photo-2" style="--rot:5deg">
+                <span class="tape tape-tr"></span>
+                <div class="photo-duotone"
+                    style="background-image:url('https://images.unsplash.com/photo-1519699047748-de8e457a634e?w=700&h=520&fit=crop&auto=format&q=80')">
+                </div>
+                <span class="photo-tag">REALISMO</span>
+            </div>
+
+            <p class="hand-note note-1">¡mira esta piel!</p>
         </div>
-        <a href="#galeria" class="scroll-cue" aria-hidden="true"><span></span></a>
     </section>
 
-    <!-- ===== BANDA ORNAMENTAL ===== -->
-    <div class="flash-band" aria-hidden="true">
-        <div class="flash-band-track">
-            <span>Realismo</span><i class="fi fi-star"></i>
-            <span>Blackwork</span><i class="fi fi-moon"></i>
-            <span>Acuarela</span><i class="fi fi-drop"></i>
-            <span>Tradicional</span><i class="fi fi-dagger"></i>
-            <span>Geométrico</span><i class="fi fi-hex"></i>
-            <span>Abstracto</span><i class="fi fi-swirl"></i>
-            <span>Realismo</span><i class="fi fi-star"></i>
-            <span>Blackwork</span><i class="fi fi-moon"></i>
-            <span>Acuarela</span><i class="fi fi-drop"></i>
-            <span>Tradicional</span><i class="fi fi-dagger"></i>
-            <span>Geométrico</span><i class="fi fi-hex"></i>
-            <span>Abstracto</span><i class="fi fi-swirl"></i>
+    <!-- ===== CINTA MARQUESINA ===== -->
+    <div class="tape-marquee" aria-hidden="true">
+        <div class="tape-marquee-track">
+            <span>AGUJA</span><span>·</span><span>TINTA</span><span>·</span><span>PIEL</span><span>·</span>
+            <span>REPITE</span><span>·</span><span>AGUJA</span><span>·</span><span>TINTA</span><span>·</span>
+            <span>PIEL</span><span>·</span><span>REPITE</span><span>·</span><span>AGUJA</span><span>·</span>
+            <span>TINTA</span><span>·</span><span>PIEL</span><span>·</span><span>REPITE</span><span>·</span>
         </div>
     </div>
 
-    <!-- ===== GALERÍA ===== -->
+    <!-- ===== GALERÍA / CORCHO ===== -->
     <section id="galeria" class="galeria">
-        <div class="section-header">
-            <p class="eyebrow">Portfolio</p>
-            <h2>Obra reciente</h2>
-            <p class="section-desc">Una selección de piezas cicatrizadas. Cada foto, una sesión distinta.</p>
+        <div class="section-head">
+            <h2 class="section-title">EL CORCHO</h2>
+            <p class="section-sub">// fotos reales, sin retocar demasiado</p>
         </div>
 
-        <div class="masonry">
-            <figure class="m-item m-tall reveal"
-                style="background-image:url('https://images.unsplash.com/photo-1761276297686-f507ca9fe8b6?w=900&h=1150&fit=crop&auto=format&q=80');">
-                <figcaption><span class="cap-title">Sesión en curso</span><span class="cap-meta">Trabajo en piel ·
-                        Estudio</span></figcaption>
-            </figure>
-            <figure class="m-item m-short reveal"
-                style="background-image:url('https://images.unsplash.com/photo-1519699047748-de8e457a634e?w=900&h=650&fit=crop&auto=format&q=80');">
-                <figcaption><span class="cap-title">Realismo</span><span class="cap-meta">42 horas · Antebrazo</span>
-                </figcaption>
-            </figure>
-            <figure class="m-item m-mid reveal"
-                style="background-image:url('https://images.unsplash.com/photo-1590246814880-1c2f3a55b4f6?w=900&h=850&fit=crop&auto=format&q=80');">
-                <figcaption><span class="cap-title">Blackwork</span><span class="cap-meta">25 horas · Espalda</span>
-                </figcaption>
-            </figure>
-            <figure class="m-item m-short reveal"
-                style="background-image:url('https://images.unsplash.com/photo-1571781418606-70265b9f0b78?w=900&h=650&fit=crop&auto=format&q=80');">
-                <figcaption><span class="cap-title">Tradicional</span><span class="cap-meta">15 horas · Brazo</span>
-                </figcaption>
-            </figure>
-            <figure class="m-item m-tall reveal"
-                style="background-image:url('https://images.unsplash.com/photo-1560250097-0b93528c311a?w=900&h=1150&fit=crop&auto=format&q=80');">
-                <figcaption><span class="cap-title">Retrato del artista</span><span class="cap-meta">En el
-                        estudio</span></figcaption>
-            </figure>
-            <figure class="m-item m-mid reveal"
-                style="background-image:url('https://images.unsplash.com/photo-1590246814880-1c2f3a55b4f6?w=900&h=1000&fit=crop&crop=entropy&auto=format&q=80');">
-                <figcaption><span class="cap-title">Geométrico</span><span class="cap-meta">20 horas · Pierna</span>
-                </figcaption>
-            </figure>
+        <div class="corkboard">
+            <div class="photo-card ck-1 reveal" style="--rot:-6deg">
+                <span class="tape tape-tl"></span>
+                <div class="photo-duotone"
+                    style="background-image:url('https://images.unsplash.com/photo-1519699047748-de8e457a634e?w=700&h=850&fit=crop&auto=format&q=80')">
+                </div>
+                <span class="photo-tag">RETRATO · 42H</span>
+            </div>
+            <div class="photo-card ck-2 reveal" style="--rot:4deg">
+                <span class="tape tape-tr"></span>
+                <div class="photo-duotone"
+                    style="background-image:url('https://images.unsplash.com/photo-1590246814880-1c2f3a55b4f6?w=700&h=560&fit=crop&auto=format&q=80')">
+                </div>
+                <span class="photo-tag">BLACKWORK</span>
+            </div>
+            <div class="photo-card ck-3 reveal" style="--rot:-3deg">
+                <span class="tape tape-bl"></span>
+                <div class="photo-duotone"
+                    style="background-image:url('https://images.unsplash.com/photo-1571781418606-70265b9f0b78?w=700&h=700&fit=crop&auto=format&q=80')">
+                </div>
+                <span class="photo-tag">TRADICIONAL</span>
+            </div>
+            <div class="photo-card ck-4 reveal" style="--rot:7deg">
+                <span class="tape tape-tl"></span>
+                <div class="photo-duotone"
+                    style="background-image:url('https://images.unsplash.com/photo-1761276297686-f507ca9fe8b6?w=700&h=900&fit=crop&auto=format&q=80')">
+                </div>
+                <span class="photo-tag">EN PROCESO</span>
+            </div>
+            <div class="photo-card ck-5 reveal" style="--rot:-8deg">
+                <span class="tape tape-tr"></span>
+                <div class="photo-duotone"
+                    style="background-image:url('https://images.unsplash.com/photo-1560250097-0b93528c311a?w=700&h=560&fit=crop&auto=format&q=80')">
+                </div>
+                <span class="photo-tag">EL ESTUDIO</span>
+            </div>
+            <div class="photo-card ck-6 reveal" style="--rot:3deg">
+                <span class="tape tape-bl"></span>
+                <div class="photo-duotone"
+                    style="background-image:url('https://images.unsplash.com/photo-1590246814880-1c2f3a55b4f6?w=700&h=880&fit=crop&crop=entropy&auto=format&q=80')">
+                </div>
+                <span class="photo-tag">GEOMÉTRICO</span>
+            </div>
         </div>
     </section>
 
-    <!-- ===== ESTILOS ===== -->
+    <!-- ===== ESTILOS / PARCHES ===== -->
     <section id="estilos" class="estilos">
-        <div class="section-header">
-            <p class="eyebrow">Especialidades</p>
-            <h2>Cada estilo, un lenguaje</h2>
-            <p class="section-desc">No hacemos de todo. Hacemos esto, y lo hacemos bien.</p>
+        <div class="section-head">
+            <h2 class="section-title">LOS PARCHES</h2>
+            <p class="section-sub">// elige tu bando</p>
         </div>
 
-        <div class="estilos-list">
-            <article class="estilo-row reveal">
-                <i class="fi fi-eye" aria-hidden="true"></i>
-                <div class="estilo-copy">
-                    <h3>Realismo</h3>
-                    <p>Retratos y texturas que engañan al ojo: luz, sombra y piel grabadas como una fotografía.</p>
-                </div>
-                <span class="estilo-time">30–60h</span>
-            </article>
-            <article class="estilo-row reveal">
-                <i class="fi fi-moon" aria-hidden="true"></i>
-                <div class="estilo-copy">
-                    <h3>Blackwork</h3>
-                    <p>Masas de negro sólido, patrones tribales y contraste absoluto. Sin medias tintas.</p>
-                </div>
-                <span class="estilo-time">15–40h</span>
-            </article>
-            <article class="estilo-row reveal">
-                <i class="fi fi-drop" aria-hidden="true"></i>
-                <div class="estilo-copy">
-                    <h3>Acuarela</h3>
-                    <p>Color que sangra sin contorno, como si la piel se hubiera manchado a propósito.</p>
-                </div>
-                <span class="estilo-time">20–35h</span>
-            </article>
-            <article class="estilo-row reveal">
-                <i class="fi fi-dagger" aria-hidden="true"></i>
-                <div class="estilo-copy">
-                    <h3>Tradicional</h3>
-                    <p>Old school americano: línea gruesa, color sólido, diseños que envejecen bien.</p>
-                </div>
-                <span class="estilo-time">10–20h</span>
-            </article>
-            <article class="estilo-row reveal">
-                <i class="fi fi-hex" aria-hidden="true"></i>
-                <div class="estilo-copy">
-                    <h3>Geométrico</h3>
-                    <p>Simetría milimétrica, regla y compás. Patrones que se repiten hasta hipnotizar.</p>
-                </div>
-                <span class="estilo-time">15–30h</span>
-            </article>
-            <article class="estilo-row reveal">
-                <i class="fi fi-swirl" aria-hidden="true"></i>
-                <div class="estilo-copy">
-                    <h3>Abstracto</h3>
-                    <p>Sin plantilla ni referencia: una conversación entre la aguja y la piel.</p>
-                </div>
-                <span class="estilo-time">A medida</span>
-            </article>
+        <div class="patch-wall">
+            <button class="patch reveal" style="--rot:-6deg" type="button">
+                <svg viewBox="0 0 120 120" class="patch-shape">
+                    <circle cx="60" cy="60" r="52" />
+                </svg>
+                <span class="patch-label">REALISMO</span>
+                <span class="patch-sub">retrato / luz</span>
+            </button>
+            <button class="patch reveal" style="--rot:5deg" type="button">
+                <svg viewBox="0 0 120 120" class="patch-shape">
+                    <polygon points="60,6 114,42 92,110 28,110 6,42" />
+                </svg>
+                <span class="patch-label">BLACKWORK</span>
+                <span class="patch-sub">negro sólido</span>
+            </button>
+            <button class="patch reveal" style="--rot:-3deg" type="button">
+                <svg viewBox="0 0 120 120" class="patch-shape">
+                    <rect x="10" y="10" width="100" height="100" rx="10" />
+                </svg>
+                <span class="patch-label">ACUARELA</span>
+                <span class="patch-sub">color sin borde</span>
+            </button>
+            <button class="patch reveal" style="--rot:7deg" type="button">
+                <svg viewBox="0 0 120 120" class="patch-shape">
+                    <circle cx="60" cy="60" r="52" />
+                </svg>
+                <span class="patch-label">TRADICIONAL</span>
+                <span class="patch-sub">old school</span>
+            </button>
+            <button class="patch reveal" style="--rot:-8deg" type="button">
+                <svg viewBox="0 0 120 120" class="patch-shape">
+                    <polygon points="60,6 114,42 92,110 28,110 6,42" />
+                </svg>
+                <span class="patch-label">GEOMÉTRICO</span>
+                <span class="patch-sub">regla y compás</span>
+            </button>
+            <button class="patch reveal" style="--rot:4deg" type="button">
+                <svg viewBox="0 0 120 120" class="patch-shape">
+                    <rect x="10" y="10" width="100" height="100" rx="10" />
+                </svg>
+                <span class="patch-label">ABSTRACTO</span>
+                <span class="patch-sub">sin plantilla</span>
+            </button>
         </div>
     </section>
 
-    <!-- ===== ARTISTA ===== -->
+    <!-- ===== ARTISTA / FICHA ===== -->
     <section id="artista" class="artista">
-        <div class="artista-wrapper reveal">
-            <div class="artista-img-container">
-                <div class="artista-img"
-                    style="background-image: url('https://images.unsplash.com/photo-1560250097-0b93528c311a?w=700&h=880&fit=crop&auto=format&q=80');">
+        <div class="artista-board reveal">
+            <div class="polaroid" style="--rot:-4deg">
+                <span class="tape tape-tc"></span>
+                <div class="photo-duotone polaroid-photo"
+                    style="background-image:url('https://images.unsplash.com/photo-1560250097-0b93528c311a?w=600&h=680&fit=crop&auto=format&q=80')">
                 </div>
-                <span class="artista-frame" aria-hidden="true"></span>
+                <span class="polaroid-caption">L. Varela — en el estudio</span>
             </div>
-            <div class="artista-info">
-                <p class="eyebrow">El artista</p>
-                <h2>Luciano Varela</h2>
-                <p class="artista-claim">"El dolor es parte del proceso de crear algo eterno."</p>
-                <div class="artista-bio">
-                    <p>Empezó en las calles de Buenos Aires, aprendiendo el oficio a mano y sin atajos. Hoy dirige su
-                        estudio en Madrid, referencia en blackwork y realismo para clientes que buscan una pieza, no un
-                        diseño de catálogo.</p>
-                    <p>Cada tatuaje es una conversación entre el artista, la piel y quien la habita.</p>
-                </div>
-                <div class="artista-metrics">
-                    <div class="metric">
-                        <span class="metric-num">20+</span>
-                        <span class="metric-label">Años de oficio</span>
-                    </div>
-                    <div class="metric">
-                        <span class="metric-num">800+</span>
-                        <span class="metric-label">Piezas realizadas</span>
-                    </div>
-                    <div class="metric">
-                        <span class="metric-num">15</span>
-                        <span class="metric-label">Premios internacionales</span>
-                    </div>
+
+            <div class="index-card" style="--rot:2deg">
+                <span class="pin" aria-hidden="true"></span>
+                <p class="card-eyebrow">FICHA DE ARTISTA</p>
+                <h2 class="card-name">LUCIANO VARELA</h2>
+                <p class="card-marker">"el dolor es parte del proceso"</p>
+                <p class="card-line">Empezó en Buenos Aires, aprendiendo el oficio sin atajos. Hoy tatúa en Madrid:
+                    realismo y blackwork, sin catálogo, sin repetir diseño.</p>
+                <div class="card-stats">
+                    <div><strong>20+</strong><span>años</span></div>
+                    <div><strong>800+</strong><span>piezas</span></div>
+                    <div><strong>15</strong><span>premios</span></div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- ===== CONTACTO ===== -->
+    <!-- ===== CONTACTO / TICKET ===== -->
     <section id="contacto" class="contacto">
-        <div class="section-header">
-            <p class="eyebrow">Cita</p>
-            <h2>Cuéntame tu idea</h2>
-            <p class="section-desc">Sin formularios largos. Lo esencial, y hablamos.</p>
+        <div class="section-head">
+            <h2 class="section-title">SACA TU TICKET</h2>
+            <p class="section-sub">// cuéntanos la idea, el resto lo hablamos en persona</p>
         </div>
 
-        <div class="contacto-grid reveal">
-            <form class="contacto-form" id="contactForm" novalidate>
-                <div class="form-field">
-                    <input type="text" id="nombre" name="nombre" placeholder=" " required>
-                    <label for="nombre">Nombre completo</label>
-                </div>
-                <div class="form-field">
-                    <input type="email" id="email" name="email" placeholder=" " required>
-                    <label for="email">Email</label>
-                </div>
-                <div class="form-field">
-                    <input type="tel" id="telefono" name="telefono" placeholder=" ">
-                    <label for="telefono">Teléfono (opcional)</label>
-                </div>
-                <div class="form-field">
-                    <textarea id="idea" name="idea" rows="4" placeholder=" "></textarea>
-                    <label for="idea">Describe tu idea</label>
-                </div>
-                <button type="submit" class="form-btn">
-                    <span class="btn-label">Enviar idea</span>
-                    <span class="btn-icon" aria-hidden="true">⇢</span>
-                </button>
-            </form>
+        <div class="ticket reveal">
+            <div class="ticket-main">
+                <form id="contactForm" novalidate>
+                    <div class="t-field">
+                        <label for="nombre">NOMBRE</label>
+                        <input type="text" id="nombre" name="nombre" required>
+                    </div>
+                    <div class="t-field">
+                        <label for="email">EMAIL</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="t-field">
+                        <label for="telefono">TELÉFONO (opcional)</label>
+                        <input type="tel" id="telefono" name="telefono">
+                    </div>
+                    <div class="t-field">
+                        <label for="idea">TU IDEA</label>
+                        <textarea id="idea" name="idea" rows="4"></textarea>
+                    </div>
+                    <button type="submit" class="ticket-btn ticket-btn-submit">
+                        <span class="btn-label">ENVIAR</span>
+                    </button>
+                </form>
+            </div>
 
-            <div class="contacto-side">
-                <div class="contacto-block">
-                    <h4>Estudio</h4>
-                    <p>Calle del Tinte 13, Madrid</p>
+            <div class="ticket-perf" aria-hidden="true"></div>
+
+            <div class="ticket-stub">
+                <p class="stub-label">ADMIT ONE</p>
+                <h3 class="stub-title">TINTA &amp; SOMBRA</h3>
+                <ul class="stub-list">
+                    <li><span>Dirección</span>Calle del Tinte 13, Madrid</li>
+                    <li><span>Email</span><a href="mailto:luciano@tintaysombra.com">luciano@tintaysombra.com</a></li>
+                    <li><span>Teléfono</span><a href="tel:+34612345678">+34 612 345 678</a></li>
+                    <li><span>Horario</span>Mar–Sáb, 11:00–20:00</li>
+                </ul>
+                <div class="stub-social">
+                    <a href="#">IG</a>
+                    <a href="#">TT</a>
+                    <a href="#">PIN</a>
                 </div>
-                <div class="contacto-block">
-                    <h4>Email</h4>
-                    <p><a href="mailto:luciano@tintaysombra.com">luciano@tintaysombra.com</a></p>
-                </div>
-                <div class="contacto-block">
-                    <h4>Teléfono</h4>
-                    <p><a href="tel:+34612345678">+34 612 345 678</a></p>
-                </div>
-                <div class="contacto-block">
-                    <h4>Horario</h4>
-                    <p>Martes – Sábado, 11:00 – 20:00</p>
-                </div>
-                <div class="redes">
-                    <a href="#">Instagram</a>
-                    <a href="#">TikTok</a>
-                    <a href="#">Pinterest</a>
-                </div>
+                <span class="stub-barcode" aria-hidden="true"></span>
             </div>
         </div>
     </section>
 
     <!-- ===== FOOTER ===== -->
     <footer class="footer">
-        <svg class="footer-mark" viewBox="0 0 60 60" fill="none" aria-hidden="true">
-            <circle cx="30" cy="30" r="27" stroke="currentColor" stroke-width="1" />
-            <ellipse cx="30" cy="30" rx="15" ry="8" stroke="currentColor" stroke-width="1" />
-            <circle cx="30" cy="30" r="4" fill="currentColor" />
+        <svg class="footer-stamp" viewBox="0 0 160 160" aria-hidden="true">
+            <defs>
+                <path id="ringFooter" d="M 80,10 A 70,70 0 1 1 79,10" fill="none" />
+            </defs>
+            <circle cx="80" cy="80" r="70" class="stamp-ring" />
+            <text class="stamp-text stamp-text-sm">
+                <textPath href="#ringFooter" startOffset="0%">TINTA &amp; SOMBRA • MADRID • </textPath>
+            </text>
+            <path class="stamp-star" d="M80 52 L88 74 L112 74 L92 88 L100 111 L80 97 L60 111 L68 88 L48 74 L72 74 Z" />
         </svg>
-        <p class="footer-motto">"La piel recuerda lo que la mente olvida"</p>
-        <p class="footer-copy">Tinta &amp; Sombra · Madrid · 2026</p>
+        <p class="footer-motto">"la piel recuerda lo que la mente olvida"</p>
     </footer>
 
     <script src="js/script.js"></script>

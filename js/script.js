@@ -15,61 +15,7 @@ if (toggle && nav) {
     }));
 }
 
-// ===== EMBLEMA: generar rayos + dibujar líneas al cargar =====
-(function buildEmblem() {
-    const ticksGroup = document.querySelector('.e-ticks');
-    if (ticksGroup) {
-        const cx = 200, cy = 200, count = 36;
-        for (let i = 0; i < count; i++) {
-            const angle = (i / count) * Math.PI * 2;
-            const long = i % 3 === 0;
-            const rInner = 158;
-            const rOuter = long ? 186 : 172;
-            const x1 = cx + Math.cos(angle) * rInner;
-            const y1 = cy + Math.sin(angle) * rInner;
-            const x2 = cx + Math.cos(angle) * rOuter;
-            const y2 = cy + Math.sin(angle) * rOuter;
-            const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
-            line.setAttribute('x1', x1.toFixed(1));
-            line.setAttribute('y1', y1.toFixed(1));
-            line.setAttribute('x2', x2.toFixed(1));
-            line.setAttribute('y2', y2.toFixed(1));
-            line.setAttribute('opacity', long ? '0.75' : '0.35');
-            ticksGroup.appendChild(line);
-        }
-    }
-
-    const emblem = document.querySelector('.emblem-svg');
-    if (!emblem) return;
-    const shapes = emblem.querySelectorAll('path, circle, ellipse, line');
-
-    shapes.forEach((el, i) => {
-        let length = 40;
-        try {
-            if (el.getTotalLength) length = el.getTotalLength();
-            else length = 20;
-        } catch (e) { length = 20; }
-
-        if (reduceMotion) {
-            el.style.opacity = '1';
-            return;
-        }
-
-        el.style.strokeDasharray = length;
-        el.style.strokeDashoffset = length;
-        el.style.opacity = el.tagName === 'circle' && el.classList.contains('e-pupil') ? '0' : '1';
-
-        setTimeout(() => {
-            el.style.strokeDashoffset = '0';
-            if (el.classList.contains('e-pupil')) {
-                el.style.transition = 'opacity 0.6s ease';
-                el.style.opacity = '1';
-            }
-        }, 200 + i * 70);
-    });
-})();
-
-// ===== SCROLL REVELADO (IntersectionObserver) =====
+// ===== SCROLL REVELADO =====
 const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -79,10 +25,10 @@ const observer = new IntersectionObserver((entries) => {
     });
 }, { threshold: 0.15 });
 
-document.querySelectorAll('.reveal, .m-item, .estilo-row, .artista-wrapper, .contacto-grid')
+document.querySelectorAll('.reveal, .corkboard .photo-card, .patch')
     .forEach((el, i) => {
         if (!reduceMotion) {
-            el.style.transitionDelay = `${(i % 6) * 70}ms`;
+            el.style.transitionDelay = `${(i % 6) * 60}ms`;
         }
         observer.observe(el);
     });
@@ -105,24 +51,27 @@ const navObserver = new IntersectionObserver((entries) => {
 
 sections.forEach(s => navObserver.observe(s));
 
+// ===== PARCHES (feedback al tocar) =====
+document.querySelectorAll('.patch').forEach(p => {
+    p.addEventListener('click', () => {
+        p.animate(
+            [{ transform: 'rotate(0deg) scale(1)' }, { transform: 'rotate(0deg) scale(0.96)' }, { transform: 'rotate(0deg) scale(1)' }],
+            { duration: 260, easing: 'ease-out' }
+        );
+    });
+});
+
 // ===== FORMULARIO =====
 const form = document.getElementById('contactForm');
 form?.addEventListener('submit', function (e) {
     e.preventDefault();
-    const btn = this.querySelector('.form-btn');
-    const label = btn.querySelector('.btn-label');
-    const original = label.textContent;
-    label.textContent = 'Idea enviada';
-    btn.style.background = 'var(--gold)';
-    btn.style.color = 'var(--ink)';
-    btn.style.borderColor = 'var(--gold)';
+    const btn = this.querySelector('.ticket-btn-submit .btn-label');
+    const original = btn.textContent;
+    btn.textContent = '¡ENVIADO!';
     setTimeout(() => {
-        label.textContent = original;
-        btn.style.background = '';
-        btn.style.color = '';
-        btn.style.borderColor = '';
+        btn.textContent = original;
         this.reset();
-    }, 2600);
+    }, 2400);
 });
 
-console.log('Tinta & Sombra · Estudio de Tatuaje');
+console.log('Tinta & Sombra · Estudio de Tatuaje — corcho');
