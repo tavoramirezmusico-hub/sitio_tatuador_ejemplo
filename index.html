@@ -4,13 +4,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tinta & Sombra · Estudio de Tatuajes</title>
+    <title>Tinta & Sombra · Estudio de Tatuaje, Madrid</title>
+    <meta name="description"
+        content="Tinta & Sombra — estudio de tatuaje en Madrid. Realismo, blackwork y diseño a medida por Luciano Varela.">
 
-    <!-- Fuentes: Otra estética más agresiva -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Uncial+Antiqua&family=Cinzel:wght@400;700;900&family=League+Gothic&family=Inter:wght@100;200;300;400&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,500;9..144,600;9..144,900&family=Cormorant+Garamond:ital,wght@0,400;1,400;1,600&family=Jost:wght@200;300;400;500;600&display=swap"
         rel="stylesheet">
 
     <link rel="stylesheet" href="css/style.css">
@@ -18,13 +19,26 @@
 
 <body>
 
-    <!-- ===== HEADER / MENÚ ===== -->
+    <!-- ===== TEXTURA DE GRANO ===== -->
+    <svg class="grain-defs" width="0" height="0">
+        <filter id="grain">
+            <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" stitchTiles="stitch"></feTurbulence>
+            <feColorMatrix type="saturate" values="0"></feColorMatrix>
+        </filter>
+    </svg>
+    <div class="grain-overlay"></div>
+
+    <!-- ===== HEADER ===== -->
     <header class="header">
         <div class="header-container">
-            <div class="logo">
-                <span class="logo-icon">⛧</span>
-                <span class="logo-text">TINTA &<br>SOMBRA</span>
-            </div>
+            <a href="#top" class="logo">
+                <svg class="logo-mark" viewBox="0 0 60 60" fill="none">
+                    <circle cx="30" cy="30" r="27" stroke="currentColor" stroke-width="1" />
+                    <ellipse cx="30" cy="30" rx="15" ry="8" stroke="currentColor" stroke-width="1" />
+                    <circle cx="30" cy="30" r="4" fill="currentColor" />
+                </svg>
+                <span class="logo-text">Tinta<em>&</em>Sombra</span>
+            </a>
             <nav class="main-nav">
                 <ul>
                     <li><a href="#galeria">Galería</a></li>
@@ -33,171 +47,195 @@
                     <li><a href="#contacto">Contacto</a></li>
                 </ul>
             </nav>
-            <button class="menu-toggle" aria-label="Menú">☰</button>
+            <button class="menu-toggle" aria-label="Abrir menú" aria-expanded="false">
+                <span></span><span></span>
+            </button>
         </div>
     </header>
 
     <!-- ===== HERO ===== -->
-    <section class="hero">
-        <div class="hero-overlay"></div>
-        <div class="hero-content">
-            <div class="hero-tag">ESTUDIO EXCLUSIVO</div>
-            <h1 class="hero-title">
-                <span class="hero-line">Arte sobre</span>
-                <span class="hero-line accent">Piel</span>
-            </h1>
-            <p class="hero-sub">Tinta que duele y sana al mismo tiempo</p>
-            <a href="#contacto" class="hero-btn">Reserva tu cita</a>
+    <section class="hero" id="top">
+        <div class="hero-grain"></div>
+        <div class="hero-inner">
+            <div class="hero-text">
+                <p class="eyebrow">Estudio de tatuaje — Madrid, desde 2006</p>
+                <h1 class="hero-title">
+                    <span class="line">La piel</span>
+                    <span class="line accent">es el lienzo</span>
+                    <span class="line">que permanece</span>
+                </h1>
+                <p class="hero-sub">Diseño a mano, líneas propias, tinta que no se negocia. Cada pieza se piensa una
+                    sola vez, para una sola piel.</p>
+                <div class="hero-actions">
+                    <a href="#contacto" class="btn btn-primary">Reservar consulta</a>
+                    <a href="#galeria" class="btn btn-ghost">Ver trabajos <span aria-hidden="true">↓</span></a>
+                </div>
+            </div>
+            <div class="hero-emblem" aria-hidden="true">
+                <svg class="emblem-svg" viewBox="0 0 400 400" fill="none">
+                    <circle class="e-ring e-ring-1" cx="200" cy="200" r="150" />
+                    <circle class="e-ring e-ring-2" cx="200" cy="200" r="118" />
+                    <g class="e-ticks"></g>
+                    <ellipse class="e-eye" cx="200" cy="200" rx="70" ry="34" />
+                    <path class="e-lid-top" d="M130 200 Q200 150 270 200" />
+                    <path class="e-lid-bottom" d="M130 200 Q200 250 270 200" />
+                    <circle class="e-iris" cx="200" cy="200" r="19" />
+                    <circle class="e-pupil" cx="200" cy="200" r="6" />
+                    <path class="e-ray e-ray-l" d="M200 200 L138 172" />
+                    <path class="e-ray e-ray-r" d="M200 200 L262 172" />
+                </svg>
+            </div>
         </div>
-        <!-- Elementos decorativos -->
-        <div class="hero-ink-1"></div>
-        <div class="hero-ink-2"></div>
-        <div class="hero-ink-3"></div>
-        <!-- Agujas decorativas (CSS) -->
-        <div class="needle needle-1"></div>
-        <div class="needle needle-2"></div>
+        <a href="#galeria" class="scroll-cue" aria-hidden="true"><span></span></a>
     </section>
+
+    <!-- ===== BANDA ORNAMENTAL ===== -->
+    <div class="flash-band" aria-hidden="true">
+        <div class="flash-band-track">
+            <span>Realismo</span><i class="fi fi-star"></i>
+            <span>Blackwork</span><i class="fi fi-moon"></i>
+            <span>Acuarela</span><i class="fi fi-drop"></i>
+            <span>Tradicional</span><i class="fi fi-dagger"></i>
+            <span>Geométrico</span><i class="fi fi-hex"></i>
+            <span>Abstracto</span><i class="fi fi-swirl"></i>
+            <span>Realismo</span><i class="fi fi-star"></i>
+            <span>Blackwork</span><i class="fi fi-moon"></i>
+            <span>Acuarela</span><i class="fi fi-drop"></i>
+            <span>Tradicional</span><i class="fi fi-dagger"></i>
+            <span>Geométrico</span><i class="fi fi-hex"></i>
+            <span>Abstracto</span><i class="fi fi-swirl"></i>
+        </div>
+    </div>
 
     <!-- ===== GALERÍA ===== -->
     <section id="galeria" class="galeria">
         <div class="section-header">
-            <span class="section-number">01</span>
-            <h2>Galería</h2>
-            <div class="header-divider"></div>
-            <p class="section-desc">Pieles transformadas en arte</p>
+            <p class="eyebrow">Portfolio</p>
+            <h2>Obra reciente</h2>
+            <p class="section-desc">Una selección de piezas cicatrizadas. Cada foto, una sesión distinta.</p>
         </div>
 
-        <div class="gallery-container">
-            <!-- Fila 1 -->
-            <div class="gallery-row">
-                <div class="gallery-card card-large"
-                    style="background-image: url('https://images.unsplash.com/photo-1519699047748-de8e457a634e?w=800&h=600&fit=crop');">
-                    <div class="card-overlay">
-                        <span class="card-label">Realismo · 40h</span>
-                    </div>
-                </div>
-                <div class="gallery-card card-small"
-                    style="background-image: url('https://images.unsplash.com/photo-1590246814880-1c2f3a55b4f6?w=400&h=600&fit=crop');">
-                    <div class="card-overlay">
-                        <span class="card-label">Blackwork · 25h</span>
-                    </div>
-                </div>
-            </div>
-            <!-- Fila 2 -->
-            <div class="gallery-row">
-                <div class="gallery-card card-small"
-                    style="background-image: url('https://images.unsplash.com/photo-1571781418606-70265b9f0b78?w=400&h=500&fit=crop');">
-                    <div class="card-overlay">
-                        <span class="card-label">Tradicional · 15h</span>
-                    </div>
-                </div>
-                <div class="gallery-card card-large"
-                    style="background-image: url('https://images.unsplash.com/photo-1519699047748-de8e457a634e?w=800&h=500&fit=crop');">
-                    <div class="card-overlay">
-                        <span class="card-label">Acuarela · 30h</span>
-                    </div>
-                </div>
-                <div class="gallery-card card-medium"
-                    style="background-image: url('https://images.unsplash.com/photo-1590246814880-1c2f3a55b4f6?w=500&h=500&fit=crop');">
-                    <div class="card-overlay">
-                        <span class="card-label">Geométrico · 20h</span>
-                    </div>
-                </div>
-            </div>
-            <!-- Fila 3 -->
-            <div class="gallery-row">
-                <div class="gallery-card card-medium"
-                    style="background-image: url('https://images.unsplash.com/photo-1519699047748-de8e457a634e?w=500&h=400&fit=crop');">
-                    <div class="card-overlay">
-                        <span class="card-label">Retrato · 50h</span>
-                    </div>
-                </div>
-                <div class="gallery-card card-large"
-                    style="background-image: url('https://images.unsplash.com/photo-1571781418606-70265b9f0b78?w=800&h=400&fit=crop');">
-                    <div class="card-overlay">
-                        <span class="card-label">Abstracto · 35h</span>
-                    </div>
-                </div>
-            </div>
+        <div class="masonry">
+            <figure class="m-item m-tall reveal"
+                style="background-image:url('https://images.unsplash.com/photo-1761276297686-f507ca9fe8b6?w=900&h=1150&fit=crop&auto=format&q=80');">
+                <figcaption><span class="cap-title">Sesión en curso</span><span class="cap-meta">Trabajo en piel ·
+                        Estudio</span></figcaption>
+            </figure>
+            <figure class="m-item m-short reveal"
+                style="background-image:url('https://images.unsplash.com/photo-1519699047748-de8e457a634e?w=900&h=650&fit=crop&auto=format&q=80');">
+                <figcaption><span class="cap-title">Realismo</span><span class="cap-meta">42 horas · Antebrazo</span>
+                </figcaption>
+            </figure>
+            <figure class="m-item m-mid reveal"
+                style="background-image:url('https://images.unsplash.com/photo-1590246814880-1c2f3a55b4f6?w=900&h=850&fit=crop&auto=format&q=80');">
+                <figcaption><span class="cap-title">Blackwork</span><span class="cap-meta">25 horas · Espalda</span>
+                </figcaption>
+            </figure>
+            <figure class="m-item m-short reveal"
+                style="background-image:url('https://images.unsplash.com/photo-1571781418606-70265b9f0b78?w=900&h=650&fit=crop&auto=format&q=80');">
+                <figcaption><span class="cap-title">Tradicional</span><span class="cap-meta">15 horas · Brazo</span>
+                </figcaption>
+            </figure>
+            <figure class="m-item m-tall reveal"
+                style="background-image:url('https://images.unsplash.com/photo-1560250097-0b93528c311a?w=900&h=1150&fit=crop&auto=format&q=80');">
+                <figcaption><span class="cap-title">Retrato del artista</span><span class="cap-meta">En el
+                        estudio</span></figcaption>
+            </figure>
+            <figure class="m-item m-mid reveal"
+                style="background-image:url('https://images.unsplash.com/photo-1590246814880-1c2f3a55b4f6?w=900&h=1000&fit=crop&crop=entropy&auto=format&q=80');">
+                <figcaption><span class="cap-title">Geométrico</span><span class="cap-meta">20 horas · Pierna</span>
+                </figcaption>
+            </figure>
         </div>
     </section>
 
     <!-- ===== ESTILOS ===== -->
     <section id="estilos" class="estilos">
         <div class="section-header">
-            <span class="section-number">02</span>
-            <h2>Estilos</h2>
-            <div class="header-divider"></div>
-            <p class="section-desc">Cada estilo es un lenguaje</p>
+            <p class="eyebrow">Especialidades</p>
+            <h2>Cada estilo, un lenguaje</h2>
+            <p class="section-desc">No hacemos de todo. Hacemos esto, y lo hacemos bien.</p>
         </div>
 
-        <div class="estilos-grid">
-            <div class="estilo-item">
-                <div class="estilo-icon">⚔️</div>
-                <h3>Realismo</h3>
-                <p>Hiperrealismo que parece una fotografía grabada en la piel.</p>
-            </div>
-            <div class="estilo-item">
-                <div class="estilo-icon">🖤</div>
-                <h3>Blackwork</h3>
-                <p>Arte en blanco y negro, patrones tribales y geométricos.</p>
-            </div>
-            <div class="estilo-item">
-                <div class="estilo-icon">🎨</div>
-                <h3>Acuarela</h3>
-                <p>Pinceladas suaves, sin contornos, colores que sangran.</p>
-            </div>
-            <div class="estilo-item">
-                <div class="estilo-icon">⛧</div>
-                <h3>Tradicional</h3>
-                <p>Old school americano: líneas gruesas, colores sólidos.</p>
-            </div>
-            <div class="estilo-item">
-                <div class="estilo-icon">✦</div>
-                <h3>Geométrico</h3>
-                <p>Precisión matemática, simetría y patrones hipnóticos.</p>
-            </div>
-            <div class="estilo-item">
-                <div class="estilo-icon">🔥</div>
-                <h3>Abstracto</h3>
-                <p>Arte único, sin reglas, pura expresión.</p>
-            </div>
+        <div class="estilos-list">
+            <article class="estilo-row reveal">
+                <i class="fi fi-eye" aria-hidden="true"></i>
+                <div class="estilo-copy">
+                    <h3>Realismo</h3>
+                    <p>Retratos y texturas que engañan al ojo: luz, sombra y piel grabadas como una fotografía.</p>
+                </div>
+                <span class="estilo-time">30–60h</span>
+            </article>
+            <article class="estilo-row reveal">
+                <i class="fi fi-moon" aria-hidden="true"></i>
+                <div class="estilo-copy">
+                    <h3>Blackwork</h3>
+                    <p>Masas de negro sólido, patrones tribales y contraste absoluto. Sin medias tintas.</p>
+                </div>
+                <span class="estilo-time">15–40h</span>
+            </article>
+            <article class="estilo-row reveal">
+                <i class="fi fi-drop" aria-hidden="true"></i>
+                <div class="estilo-copy">
+                    <h3>Acuarela</h3>
+                    <p>Color que sangra sin contorno, como si la piel se hubiera manchado a propósito.</p>
+                </div>
+                <span class="estilo-time">20–35h</span>
+            </article>
+            <article class="estilo-row reveal">
+                <i class="fi fi-dagger" aria-hidden="true"></i>
+                <div class="estilo-copy">
+                    <h3>Tradicional</h3>
+                    <p>Old school americano: línea gruesa, color sólido, diseños que envejecen bien.</p>
+                </div>
+                <span class="estilo-time">10–20h</span>
+            </article>
+            <article class="estilo-row reveal">
+                <i class="fi fi-hex" aria-hidden="true"></i>
+                <div class="estilo-copy">
+                    <h3>Geométrico</h3>
+                    <p>Simetría milimétrica, regla y compás. Patrones que se repiten hasta hipnotizar.</p>
+                </div>
+                <span class="estilo-time">15–30h</span>
+            </article>
+            <article class="estilo-row reveal">
+                <i class="fi fi-swirl" aria-hidden="true"></i>
+                <div class="estilo-copy">
+                    <h3>Abstracto</h3>
+                    <p>Sin plantilla ni referencia: una conversación entre la aguja y la piel.</p>
+                </div>
+                <span class="estilo-time">A medida</span>
+            </article>
         </div>
     </section>
 
     <!-- ===== ARTISTA ===== -->
     <section id="artista" class="artista">
-        <div class="section-header">
-            <span class="section-number">03</span>
-            <h2>El Artista</h2>
-            <div class="header-divider"></div>
-        </div>
-
-        <div class="artista-wrapper">
+        <div class="artista-wrapper reveal">
             <div class="artista-img-container">
                 <div class="artista-img"
-                    style="background-image: url('https://images.unsplash.com/photo-1560250097-0b93528c311a?w=500&h=600&fit=crop');">
+                    style="background-image: url('https://images.unsplash.com/photo-1560250097-0b93528c311a?w=700&h=880&fit=crop&auto=format&q=80');">
                 </div>
-                <div class="artista-ink-stain"></div>
+                <span class="artista-frame" aria-hidden="true"></span>
             </div>
             <div class="artista-info">
-                <h3>Luciano Varela</h3>
-                <p class="artista-claim">"El dolor es parte del proceso de crear algo eterno"</p>
+                <p class="eyebrow">El artista</p>
+                <h2>Luciano Varela</h2>
+                <p class="artista-claim">"El dolor es parte del proceso de crear algo eterno."</p>
                 <div class="artista-bio">
-                    <p>20 años de experiencia. Comenzó en las calles de Buenos Aires, aprendiendo el oficio en los
-                        barrios más duros. Hoy, su estudio en Madrid es referencia internacional para el blackwork y el
-                        realismo.</p>
-                    <p>Su filosofía: cada tatuaje es una conversación entre el artista, la piel y el alma del cliente.
-                    </p>
+                    <p>Empezó en las calles de Buenos Aires, aprendiendo el oficio a mano y sin atajos. Hoy dirige su
+                        estudio en Madrid, referencia en blackwork y realismo para clientes que buscan una pieza, no un
+                        diseño de catálogo.</p>
+                    <p>Cada tatuaje es una conversación entre el artista, la piel y quien la habita.</p>
                 </div>
                 <div class="artista-metrics">
                     <div class="metric">
                         <span class="metric-num">20+</span>
-                        <span class="metric-label">Años de tinta</span>
+                        <span class="metric-label">Años de oficio</span>
                     </div>
                     <div class="metric">
                         <span class="metric-num">800+</span>
-                        <span class="metric-label">Pieles tatuadas</span>
+                        <span class="metric-label">Piezas realizadas</span>
                     </div>
                     <div class="metric">
                         <span class="metric-num">15</span>
@@ -211,51 +249,56 @@
     <!-- ===== CONTACTO ===== -->
     <section id="contacto" class="contacto">
         <div class="section-header">
-            <span class="section-number">04</span>
-            <h2>Contacto</h2>
-            <div class="header-divider"></div>
-            <p class="section-desc">Dime tu idea. Hagamos algo único.</p>
+            <p class="eyebrow">Cita</p>
+            <h2>Cuéntame tu idea</h2>
+            <p class="section-desc">Sin formularios largos. Lo esencial, y hablamos.</p>
         </div>
 
-        <div class="contacto-grid">
-            <form class="contacto-form" id="contactForm">
+        <div class="contacto-grid reveal">
+            <form class="contacto-form" id="contactForm" novalidate>
                 <div class="form-field">
-                    <input type="text" id="nombre" placeholder="Nombre completo" required>
+                    <input type="text" id="nombre" name="nombre" placeholder=" " required>
+                    <label for="nombre">Nombre completo</label>
                 </div>
                 <div class="form-field">
-                    <input type="email" id="email" placeholder="Email" required>
+                    <input type="email" id="email" name="email" placeholder=" " required>
+                    <label for="email">Email</label>
                 </div>
                 <div class="form-field">
-                    <input type="text" id="telefono" placeholder="Teléfono (opcional)">
+                    <input type="tel" id="telefono" name="telefono" placeholder=" ">
+                    <label for="telefono">Teléfono (opcional)</label>
                 </div>
                 <div class="form-field">
-                    <textarea id="idea" rows="4"
-                        placeholder="Describe tu idea... ¿qué quieres llevar en la piel?"></textarea>
+                    <textarea id="idea" name="idea" rows="4" placeholder=" "></textarea>
+                    <label for="idea">Describe tu idea</label>
                 </div>
-                <button type="submit" class="form-btn">Enviar idea ⇢</button>
+                <button type="submit" class="form-btn">
+                    <span class="btn-label">Enviar idea</span>
+                    <span class="btn-icon" aria-hidden="true">⇢</span>
+                </button>
             </form>
 
             <div class="contacto-side">
                 <div class="contacto-block">
-                    <h4>📍 Estudio</h4>
+                    <h4>Estudio</h4>
                     <p>Calle del Tinte 13, Madrid</p>
                 </div>
                 <div class="contacto-block">
-                    <h4>✉️ Email</h4>
-                    <p>luciano@tintaysombra.com</p>
+                    <h4>Email</h4>
+                    <p><a href="mailto:luciano@tintaysombra.com">luciano@tintaysombra.com</a></p>
                 </div>
                 <div class="contacto-block">
-                    <h4>📱 Teléfono</h4>
-                    <p>+34 612 345 678</p>
+                    <h4>Teléfono</h4>
+                    <p><a href="tel:+34612345678">+34 612 345 678</a></p>
                 </div>
                 <div class="contacto-block">
-                    <h4>Redes</h4>
-                    <div class="redes">
-                        <a href="#">IG</a>
-                        <a href="#">FB</a>
-                        <a href="#">YT</a>
-                        <a href="#">TT</a>
-                    </div>
+                    <h4>Horario</h4>
+                    <p>Martes – Sábado, 11:00 – 20:00</p>
+                </div>
+                <div class="redes">
+                    <a href="#">Instagram</a>
+                    <a href="#">TikTok</a>
+                    <a href="#">Pinterest</a>
                 </div>
             </div>
         </div>
@@ -263,8 +306,13 @@
 
     <!-- ===== FOOTER ===== -->
     <footer class="footer">
-        <p>⛧ TINTA & SOMBRA · 2026</p>
+        <svg class="footer-mark" viewBox="0 0 60 60" fill="none" aria-hidden="true">
+            <circle cx="30" cy="30" r="27" stroke="currentColor" stroke-width="1" />
+            <ellipse cx="30" cy="30" rx="15" ry="8" stroke="currentColor" stroke-width="1" />
+            <circle cx="30" cy="30" r="4" fill="currentColor" />
+        </svg>
         <p class="footer-motto">"La piel recuerda lo que la mente olvida"</p>
+        <p class="footer-copy">Tinta &amp; Sombra · Madrid · 2026</p>
     </footer>
 
     <script src="js/script.js"></script>

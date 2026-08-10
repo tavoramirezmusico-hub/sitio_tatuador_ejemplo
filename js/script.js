@@ -1,79 +1,128 @@
+const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
 // ===== MENÚ MÓVIL =====
 const toggle = document.querySelector('.menu-toggle');
 const nav = document.querySelector('.main-nav');
 
 if (toggle && nav) {
     toggle.addEventListener('click', () => {
-        nav.style.display = nav.style.display === 'flex' ? 'none' : 'flex';
-        nav.style.flexDirection = 'column';
-        nav.style.position = 'absolute';
-        nav.style.top = '70px';
-        nav.style.left = '0';
-        nav.style.right = '0';
-        nav.style.background = 'rgba(12, 10, 10, 0.98)';
-        nav.style.padding = '30px';
-        nav.style.borderBottom = '1px solid rgba(139,42,42,0.1)';
+        const open = nav.classList.toggle('open');
+        toggle.setAttribute('aria-expanded', open);
     });
+    nav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+        nav.classList.remove('open');
+        toggle.setAttribute('aria-expanded', 'false');
+    }));
 }
 
-// ===== SCROLL REVELADO =====
+// ===== EMBLEMA: generar rayos + dibujar líneas al cargar =====
+(function buildEmblem() {
+    const ticksGroup = document.querySelector('.e-ticks');
+    if (ticksGroup) {
+        const cx = 200, cy = 200, count = 36;
+        for (let i = 0; i < count; i++) {
+            const angle = (i / count) * Math.PI * 2;
+            const long = i % 3 === 0;
+            const rInner = 158;
+            const rOuter = long ? 186 : 172;
+            const x1 = cx + Math.cos(angle) * rInner;
+            const y1 = cy + Math.sin(angle) * rInner;
+            const x2 = cx + Math.cos(angle) * rOuter;
+            const y2 = cy + Math.sin(angle) * rOuter;
+            const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+            line.setAttribute('x1', x1.toFixed(1));
+            line.setAttribute('y1', y1.toFixed(1));
+            line.setAttribute('x2', x2.toFixed(1));
+            line.setAttribute('y2', y2.toFixed(1));
+            line.setAttribute('opacity', long ? '0.75' : '0.35');
+            ticksGroup.appendChild(line);
+        }
+    }
+
+    const emblem = document.querySelector('.emblem-svg');
+    if (!emblem) return;
+    const shapes = emblem.querySelectorAll('path, circle, ellipse, line');
+
+    shapes.forEach((el, i) => {
+        let length = 40;
+        try {
+            if (el.getTotalLength) length = el.getTotalLength();
+            else length = 20;
+        } catch (e) { length = 20; }
+
+        if (reduceMotion) {
+            el.style.opacity = '1';
+            return;
+        }
+
+        el.style.strokeDasharray = length;
+        el.style.strokeDashoffset = length;
+        el.style.opacity = el.tagName === 'circle' && el.classList.contains('e-pupil') ? '0' : '1';
+
+        setTimeout(() => {
+            el.style.strokeDashoffset = '0';
+            if (el.classList.contains('e-pupil')) {
+                el.style.transition = 'opacity 0.6s ease';
+                el.style.opacity = '1';
+            }
+        }, 200 + i * 70);
+    });
+})();
+
+// ===== SCROLL REVELADO (IntersectionObserver) =====
 const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
-            entry.target.style.opacity = '1';
-            entry.target.style.transform = 'translateY(0)';
+            entry.target.classList.add('in-view');
+            observer.unobserve(entry.target);
         }
     });
-}, { threshold: 0.1 });
+}, { threshold: 0.15 });
 
-document.querySelectorAll('.gallery-card, .estilo-item, .artista-wrapper, .contacto-grid').forEach(el => {
-    el.style.opacity = '0';
-    el.style.transform = 'translateY(30px)';
-    el.style.transition = 'all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
-    observer.observe(el);
-});
+document.querySelectorAll('.reveal, .m-item, .estilo-row, .artista-wrapper, .contacto-grid')
+    .forEach((el, i) => {
+        if (!reduceMotion) {
+            el.style.transitionDelay = `${(i % 6) * 70}ms`;
+        }
+        observer.observe(el);
+    });
 
 // ===== NAVEGACIÓN ACTIVA =====
-const sections = document.querySelectorAll('section');
+const sections = document.querySelectorAll('section[id]');
 const navLinks = document.querySelectorAll('.main-nav a');
 
-window.addEventListener('scroll', () => {
-    let current = '';
-    sections.forEach(section => {
-        const top = section.offsetTop - 100;
-        if (window.scrollY >= top) {
-            current = section.id;
+const navObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        const id = entry.target.getAttribute('id');
+        const link = document.querySelector(`.main-nav a[href="#${id}"]`);
+        if (!link) return;
+        if (entry.isIntersecting) {
+            navLinks.forEach(l => l.classList.remove('active'));
+            link.classList.add('active');
         }
     });
-    navLinks.forEach(link => {
-        link.style.opacity = link.getAttribute('href') === `#${current}` ? '1' : '0.4';
-    });
-});
+}, { rootMargin: '-45% 0px -45% 0px' });
+
+sections.forEach(s => navObserver.observe(s));
 
 // ===== FORMULARIO =====
-document.getElementById('contactForm')?.addEventListener('submit', function (e) {
+const form = document.getElementById('contactForm');
+form?.addEventListener('submit', function (e) {
     e.preventDefault();
     const btn = this.querySelector('.form-btn');
-    const original = btn.textContent;
-    btn.textContent = '✓ Enviado';
-    btn.style.background = '#8b2a2a';
-    btn.style.color = '#0c0a0a';
+    const label = btn.querySelector('.btn-label');
+    const original = label.textContent;
+    label.textContent = 'Idea enviada';
+    btn.style.background = 'var(--gold)';
+    btn.style.color = 'var(--ink)';
+    btn.style.borderColor = 'var(--gold)';
     setTimeout(() => {
-        btn.textContent = original;
-        btn.style.background = 'transparent';
-        btn.style.color = '#d4ccc6';
+        label.textContent = original;
+        btn.style.background = '';
+        btn.style.color = '';
+        btn.style.borderColor = '';
         this.reset();
-    }, 3000);
+    }, 2600);
 });
 
-// ===== EFECTO DE TINTA EN HERO =====
-document.querySelectorAll('.hero-ink-1, .hero-ink-2, .hero-ink-3').forEach(ink => {
-    ink.addEventListener('mouseenter', function () {
-        this.style.opacity = '0.1';
-    });
-    ink.addEventListener('mouseleave', function () {
-        this.style.opacity = '0.04';
-    });
-});
-
-console.log('⛧ TINTA & SOMBRA · Estudio de Tatuajes');
+console.log('Tinta & Sombra · Estudio de Tatuaje');
